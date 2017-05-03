@@ -60,22 +60,35 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<?php
-		foreach($tweets as $tweet){
-			echo $tweet->text;
-			echo "<br>";
-		}
-	?>
-	<form action="judge.php" method="post">
-		<?php echo "<input type='hidden' name='answer' value='".$person[0]."' >"; ?>
+	<header class="jumbotron">
+		<div class="container">
+			<h1>MapTweetQuiz</h1>
+			<p></p>
+		</div>
+	</header>
+	<div class="container">
+		<h1>有名人のツイート一覧</h1>
+		<table class="table">
 		<?php
-			foreach($people[$country] as $person){
-				echo "<input type='radio' name='account' value='".$person[0]."'>";
-				echo $person[0];
-				echo "<br>";
+			foreach($tweets as $tweet){
+				echo "<tr><td>";
+				echo $tweet->text;
+				echo "</td></tr>";
 			}
 		?>
-		<input type="submit" value="回答">
-	</form>
+		</table>
+		<form action="judge.php" method="post">
+			<?php echo "<input type='hidden' name='answer' value='".$person[0]."' >"; ?>
+			<?php
+				foreach($people[$country] as $person){
+					echo "<div class='radio'>";
+					echo "<input type='radio' name='account' value='".$person[0]."'>";
+					echo $person[0];
+					echo "</div>";
+				}
+			?>
+			<input type="submit" class="btn btn-block btn-info" value="回答">
+		</form>
+	</div>
 </body>
 </html>
