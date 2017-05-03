@@ -1,4 +1,7 @@
 <?php
+	require_once("config.php");//TwitterAPIキー情報を読み込む
+
+
 	if(isset($_GET["country"])){
 		$country=$_GET["country"];
 	}
