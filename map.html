@@ -19,6 +19,20 @@
             max-width: 1200px;
             margin: auto;
         }
+        .mapael .mapTooltip {
+            position: absolute;
+            margin-left:80px;
+            background-color: #fff;
+            moz-opacity: 0.70;
+            opacity: 0.70;
+            filter: alpha(opacity=70);
+            border-radius: 10px;
+            padding: 10px;
+            z-index: 1000;
+            max-width: 200px;
+            display: none;
+            color: #343434;
+        }
     </style>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" charset="utf-8"></script>
@@ -42,7 +56,6 @@
                 },
                 areas: {
                     "JP": {
-                        //"value": "35320445",
                         "attrs": {
                             "fill": "#00bfff"
                         },
@@ -50,81 +63,45 @@
                             click: function () {
                                 window.location.href = 'quiz.php?country=Japan';
                             }
-                        }
-                        /*
+                        },
+                        
                         "tooltip": {
-                            "content": "<span style=\"font-weight:bold;\">Afghanistan<\/span><br \/>Population : 35320445"
-                        }*/
+                            "content": "<span style=\"font-weight:bold;\">日本の有名人<br>有吉、松本、西野、小泉"
+                        }
 
                     },
                     "US": {
-                        //"value": "35320445",
                         "attrs": {
                             "fill": "#00bfff"
                         },
-                        /*
-                        "tooltip": {
-                            "content": "<span style=\"font-weight:bold;\">Afghanistan<\/span><br \/>Population : 35320445"
-                        }*/
                         eventHandlers: {
                             click: function () {
                                 window.location.href = 'quiz.php?country=America';
                             }
+                        },
+                        "tooltip": {
+                            "content": "<span style=\"font-weight:bold;\">アメリカの有名人<br>ドナルドトランプ、テイラースイフト、トムクルーズ、マクドナルド"
                         }
                     },
                     "CA": {
-                        //"value": "35320445",
                         "attrs": {
                             "fill": "#00bfff"
                         },
-                        /*
-                        "tooltip": {
-                            "content": "<span style=\"font-weight:bold;\">Afghanistan<\/span><br \/>Population : 35320445"
-                        }*/
+                        
                         eventHandlers: {
                             click: function () {
                                 window.location.href = 'quiz.php?country=Canada';
                             }
+                        },
+                        "tooltip": {
+                            "content": "<span style=\"font-weight:bold;\">カナダの有名人<br>ジャスティンビーバー、アヴリルラヴィーン、セリーヌディオン、ジムキャリー"
                         }
 
                     }
-                    /*
-                    eventHandlers: {
-                            click: function (e, id, mapElem, textElem) {
-                                var newData = {
-                                    'areas': {}
-                                };
-                                if (mapElem.originalAttrs.fill == "#5ba4ff") {
-                                    newData.areas[id] = {
-                                        attrs: {
-                                            fill: "#0088db"
-                                        }
-                                    };
-                                } else {
-                                    newData.areas[id] = {
-                                        attrs: {
-                                            fill: "#5ba4ff"
-                                        }
-                                    };
-                                }
-                                $(".mapcontainer").trigger('update', [{mapOptions: newData}]);
-                            }
-                        }*/
+                    
                 }
             });
         });
-
-
-
-/*
-        $('#button-areas').on('click', function () {
-                areas_hidden = (areas_hidden == 'show') ? 'hide' : 'show';
-
-                $(".mapcontainer").trigger('update', [{
-                        setLegendElemsState: {"areaLegend": areas_hidden},
-                        animDuration: 1000
-                    }]);
-            });*/
     </script>
 
 </head>
@@ -132,15 +109,17 @@
 <body>
 <div class="container">
 
-    <h1>Map Quiz</h1>
+    <h1></h1>
 
+    <div align="center">
+        <img border="0" src="logo.png" width="300">
+    </div>
     <div class="mapcontainer">
         <div class="map">
             <span>Alternative content for the map</span>
         </div>
     </div>
 
-    <p><b>All example for jQuery Mapael are available <a href="https://www.vincentbroute.fr/mapael/">here</a>.</b></p>
 
 </div>
 
