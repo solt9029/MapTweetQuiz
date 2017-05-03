@@ -1,6 +1,8 @@
 <?php
 	require_once("config.php");//TwitterAPIキー情報を読み込む
 
+	require 'TwistOAuth.phar';
+
 	$people=array(
 		"Canada"=>array(
 			"Avril Lavigne"=>"AvrilLavigne",
@@ -27,7 +29,7 @@
 	}
 
 	$tweets=array();
-	
+
 	switch($country){
 		case "America":
 			//アメリカの有名人4人の中からランダムに選択する
