@@ -1,5 +1,5 @@
 <?php
-error_reporting(E_ALL);
+	error_reporting(E_ALL);
 	require_once("config.php");//TwitterAPIキー情報を読み込む
 
 	require "vendor/autoload.php";
@@ -35,37 +35,11 @@ error_reporting(E_ALL);
 
 	$tweets=array();
 
-	switch($country){
-		case "America":
-			//アメリカの有名人4人の中からランダムに選択する
-			//$tweets変数にその人のツイートをランダムに取得する
-			$person=$people["America"][rand(0,3)];
-			$tweets=$connection->get("statuses/user_timeline",array(
-					"screen_name"=>"@".$person[1],
-					"count"=>"5"
-			));
-			break;
-		case "Japan":
-			//日本の有名人4人の中からランダムに選択する
-			//$tweets変数にその人のツイートをランダムに取得する
-			$person=$people["Japan"][rand(0,3)];
-			$tweets=$connection->get("statuses/user_timeline",array(
-					"screen_name"=>"@".$person[1],
-					"count"=>"5"
-			));
-			break;
-		case "Canada":
-			//カナダの有名人4人の中からランダムに選択する
-			//$tweets変数にその人のツイートをランダムに取得する
-			$person=$people["Canada"][rand(0,3)];
-			$tweets=$connection->get("statuses/user_timeline",array(
-					"screen_name"=>"@".$person[1],
-					"count"=>"5"
-			));
-			break;
-		default:
-			break;
-	}
+	$person=$people[$country][rand(0,3)];
+	$tweets=$connection->get("statuses/user_timeline",array(
+			"screen_name"=>"@".$person[1],
+			"count"=>"5"
+	));
 
 ?>
 
