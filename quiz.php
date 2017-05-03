@@ -1,7 +1,8 @@
 <?php
+error_reporting(E_ALL);
 	require_once("config.php");//TwitterAPIキー情報を読み込む
 
-	require 'TwistOAuth.phar';
+
 
 	$people=array(
 		"Canada"=>array(
@@ -52,6 +53,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8">
 	<title>MapTweetQuiz</title>
 </head>
 <body>
@@ -59,6 +61,7 @@
 		foreach($tweets as $tweet){
 			echo $tweet;
 		}
+		var_dump("aiueo");
 	?>
 </body>
 </html>
