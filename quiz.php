@@ -2,28 +2,32 @@
 error_reporting(E_ALL);
 	require_once("config.php");//TwitterAPIキー情報を読み込む
 
-
+	require "vendor/autoload.php";
+	use Abraham\TwitterOAuth\TwitterOAuth;
+	$connection=new TwitterOAuth(API_KEY,API_SECRET,ACCESS_TOKEN,ACCESS_TOKEN_SECRET);
 
 	$people=array(
 		"Canada"=>array(
-			"Avril Lavigne"=>"AvrilLavigne",
-			"Justin Bieber"=>"justinbieber",
-			"Celine Dion"=>"celinedion",
-			"Jim Carrey"=>"JimCarrey"
+			array("Avril Lavigne","AvrilLavigne"),
+			array("Justin Bieber","justinbieber"),
+			array("Celine Dion","celinedion"),
+			array("Jim Carrey","JimCarrey")
 		),
 		"America"=>array(//後からアメリカ人に直す
-			"Avril Lavigne"=>"AvrilLavigne",
-			"Justin Bieber"=>"justinbieber",
-			"Celine Dion"=>"celinedion",
-			"Jim Carrey"=>"JimCarrey"
+			array("Donald Trump","realDonaldTrump"),
+			array("Taylor Swift","taylorswift13"),
+			array("Tom Cruise","TomCruise"),
+			array("McDonald's","McDonalds")
 		),
 		"Japan"=>array(//後から日本人に直す
-			"Avril Lavigne"=>"AvrilLavigne",
-			"Justin Bieber"=>"justinbieber",
-			"Celine Dion"=>"celinedion",
-			"Jim Carrey"=>"JimCarrey"
+			array("有吉弘行","ariyoshihiroiki"),
+			array("松本人志","matsu_bouzu"),
+			array("西野カナ","kanayanofficial"),
+			array("小泉純一郎","J_Koizumi_Japan")
 		)
 	);
+
+	$country="";
 
 	if(isset($_GET["country"])){
 		$country=$_GET["country"];
@@ -35,14 +39,29 @@ error_reporting(E_ALL);
 		case "America":
 			//アメリカの有名人4人の中からランダムに選択する
 			//$tweets変数にその人のツイートをランダムに取得する
+			$person=$people["America"][rand(0,3)];
+			$tweets=$connection->get("statuses/user_timeline",array(
+					"screen_name"=>"@".$person[1],
+					"count"=>"5"
+			));
 			break;
 		case "Japan":
 			//日本の有名人4人の中からランダムに選択する
 			//$tweets変数にその人のツイートをランダムに取得する
+			$person=$people["Japan"][rand(0,3)];
+			$tweets=$connection->get("statuses/user_timeline",array(
+					"screen_name"=>"@".$person[1],
+					"count"=>"5"
+			));
 			break;
 		case "Canada":
 			//カナダの有名人4人の中からランダムに選択する
 			//$tweets変数にその人のツイートをランダムに取得する
+			$person=$people["Canada"][rand(0,3)];
+			$tweets=$connection->get("statuses/user_timeline",array(
+					"screen_name"=>"@".$person[1],
+					"count"=>"5"
+			));
 			break;
 		default:
 			break;
@@ -59,9 +78,9 @@ error_reporting(E_ALL);
 <body>
 	<?php
 		foreach($tweets as $tweet){
-			echo $tweet;
+			echo $tweet->text;
+			echo "<br>";
 		}
-		var_dump("aiueo");
 	?>
 </body>
 </html>
