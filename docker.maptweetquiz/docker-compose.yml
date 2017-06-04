@@ -1,0 +1,7 @@
+web:
+  build: .
+  ports:
+    - "8018:80"
+  volumes:
+    - ../:/var/www/html
+    #- ./httpd:/etc/httpd/conf
